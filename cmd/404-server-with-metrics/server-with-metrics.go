@@ -199,6 +199,7 @@ func (s *server) notFoundHandler() http.HandlerFunc {
 		s.totalRequests.WithLabelValues(pattern, r.Method).Inc()
 
 		path := r.URL.Path
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		w.WriteHeader(http.StatusNotFound)
 		// we log 1 out of 10 requests (by default) to the logs
 		fmt.Fprintf(w, "response 404 (backend NotFound), service rules for [ %s ] non-existent \n", path)

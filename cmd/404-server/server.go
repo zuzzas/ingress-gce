@@ -76,6 +76,7 @@ func notFound(options ...func(*server)) *server {
 		fmt.Fprint(w, "ok")
 	})
 	s.mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		w.WriteHeader(http.StatusNotFound)
 		fmt.Fprint(w, "default backend - 404")
 	})
